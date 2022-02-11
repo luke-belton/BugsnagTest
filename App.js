@@ -19,6 +19,10 @@ Bugsnag.start({
   plugins: [new BugsnagPluginReact(), new BugsnagPluginReactNavigation()],
 });
 
+const {createNavigationContainer} = Bugsnag.getPlugin('reactNavigation');
+const BugsnagNavigationContainer =
+  createNavigationContainer(NavigationContainer);
+
 const ErrorBoundary = Bugsnag.getPlugin('react').createErrorBoundary(React);
 
 const ErrorView = ({clearError}) => {
@@ -76,7 +80,7 @@ const ScreenC = () => {
       console.log('screen c effect');
       setFoo([50, 80]);
     }, 1500);
-  }, []);
+  }, [setFoo]);
 
   return (
     <SafeAreaView>
@@ -117,9 +121,7 @@ const LoginScreen = () => {
 
 const AuthStateScreen = () => {
   const {loggedIn} = useContext(UserContext);
-  const {createNavigationContainer} = Bugsnag.getPlugin('reactNavigation');
-  const BugsnagNavigationContainer =
-    createNavigationContainer(NavigationContainer);
+
   const Stack = createNativeStackNavigator();
 
   if (loggedIn) {
