@@ -116,13 +116,13 @@ const LoginScreen = () => {
 };
 
 const AuthStateScreen = () => {
-  const {loggedIn} = useContext(UserContext);
+  // const {loggedIn} = useContext(UserContext);
   const {createNavigationContainer} = Bugsnag.getPlugin('reactNavigation');
   const BugsnagNavigationContainer =
     createNavigationContainer(NavigationContainer);
   const Stack = createNativeStackNavigator();
 
-  if (loggedIn) {
+  if (true) {
     return (
       <BugsnagNavigationContainer>
         <Stack.Navigator>
